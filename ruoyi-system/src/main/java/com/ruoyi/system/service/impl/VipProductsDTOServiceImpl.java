@@ -3,9 +3,9 @@ package com.ruoyi.system.service.impl;
 import java.util.List;
 
 import com.ruoyi.common.utils.DateUtils;
+import com.ruoyi.system.mapper.VipProductsDTOMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.ruoyi.system.mapper.VipProductsMapper;
 import com.ruoyi.system.domain.VipProducts;
 import com.ruoyi.system.service.IVipProductsService;
 
@@ -16,9 +16,9 @@ import com.ruoyi.system.service.IVipProductsService;
  * @date 2023-09-11
  */
 @Service
-public class VipProductsServiceImpl implements IVipProductsService {
+public class VipProductsDTOServiceImpl implements IVipProductsService {
     @Autowired
-    private VipProductsMapper vipProductsMapper;
+    private VipProductsDTOMapper vipProductsMapper;
 
     /**
      * 查询会员内购信息

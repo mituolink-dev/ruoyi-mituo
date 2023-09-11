@@ -4,7 +4,7 @@ import java.util.List;
 import com.ruoyi.common.utils.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.ruoyi.system.mapper.VipSubscriptionMapper;
+import com.ruoyi.system.mapper.VipSubscriptionDTOMapper;
 import com.ruoyi.system.domain.VipSubscription;
 import com.ruoyi.system.service.IVipSubscriptionService;
 
@@ -15,10 +15,10 @@ import com.ruoyi.system.service.IVipSubscriptionService;
  * @date 2023-09-11
  */
 @Service
-public class VipSubscriptionServiceImpl implements IVipSubscriptionService 
+public class VipSubscriptionDTOServiceImpl implements IVipSubscriptionService
 {
     @Autowired
-    private VipSubscriptionMapper vipSubscriptionMapper;
+    private VipSubscriptionDTOMapper vipSubscriptionMapper;
 
     /**
      * 查询会员订阅信息

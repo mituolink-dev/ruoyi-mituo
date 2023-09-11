@@ -1,6 +1,8 @@
 package com.ruoyi.system.mapper;
 
 import java.util.List;
+
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.ruoyi.system.domain.VipProducts;
 
 /**
@@ -9,7 +11,7 @@ import com.ruoyi.system.domain.VipProducts;
  * @author ruoyi
  * @date 2023-09-11
  */
-public interface VipProductsMapper 
+public interface VipProductsDTOMapper extends BaseMapper<VipProducts>
 {
     /**
      * 查询会员内购信息

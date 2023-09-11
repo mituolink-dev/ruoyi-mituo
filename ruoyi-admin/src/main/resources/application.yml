@@ -129,3 +129,9 @@ xss:
   excludes: /system/notice
   # 匹配链接
   urlPatterns: /system/*,/monitor/*,/tool/*
+
+secret:
+  grant-type: refresh_token
+  Client-id: 58453024511-vb562muoeep4jrkv6t9g3gh5a3tvvrtg.apps.googleusercontent.com
+  refresh-token: 1//06e07P-MQPK4jCgYIARAAGAYSNwF-L9Irn-86xmKXqCapsNXqths2daWfXxBTtce37PSJrZqalEBb9sQ_GTuM8LYMxVio0drm-kM
+  client-secret: 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
