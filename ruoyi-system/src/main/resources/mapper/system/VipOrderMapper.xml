@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.system.mapper.VipOrderMapper">
+    
+    <resultMap type="VipOrder" id="VipOrderResult">
+        <result property="id"    column="id"    />
+        <result property="orderSn"    column="order_sn"    />
+        <result property="thirdOrderSn"    column="third_order_sn"    />
+        <result property="originOrderSn"    column="origin_order_sn"    />
+        <result property="type"    column="type"    />
+        <result property="userId"    column="user_id"    />
+        <result property="goodsId"    column="goods_id"    />
+        <result property="price"    column="price"    />
+        <result property="distributionChannel"    column="distribution_channel"    />
+        <result property="paymentMethod"    column="payment_method"    />
+        <result property="status"    column="status"    />
+        <result property="deliverStatus"    column="deliver_status"    />
+        <result property="completeTime"    column="complete_time"    />
+        <result property="refundTime"    column="refund_time"    />
+        <result property="payTime"    column="pay_time"    />
+        <result property="deviceId"    column="device_id"    />
+        <result property="ip"    column="ip"    />
+        <result property="country"    column="country"    />
+        <result property="originInfo"    column="origin_info"    />
+        <result property="remark"    column="remark"    />
+        <result property="supportRefund"    column="support_refund"    />
+        <result property="refundReason"    column="refund_reason"    />
+        <result property="goodsInfo"    column="goods_info"    />
+        <result property="packageName"    column="package_name"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="updateTime"    column="update_time"    />
+    </resultMap>
+
+    <sql id="selectVipOrderVo">
+        select id, order_sn, third_order_sn, origin_order_sn, type, user_id, goods_id, price, distribution_channel, payment_method, status, deliver_status, complete_time, refund_time, pay_time, device_id, ip, country, origin_info, remark, support_refund, refund_reason, goods_info, package_name, create_time, update_time from vip_order
+    </sql>
+
+    <select id="selectVipOrderList" parameterType="VipOrder" resultMap="VipOrderResult">
+        <include refid="selectVipOrderVo"/>
+        <where>  
+            <if test="orderSn != null  and orderSn != ''"> and order_sn = #{orderSn}</if>
+            <if test="thirdOrderSn != null  and thirdOrderSn != ''"> and third_order_sn = #{thirdOrderSn}</if>
+            <if test="originOrderSn != null  and originOrderSn != ''"> and origin_order_sn = #{originOrderSn}</if>
+            <if test="type != null "> and type = #{type}</if>
+            <if test="userId != null "> and user_id = #{userId}</if>
+            <if test="goodsId != null "> and goods_id = #{goodsId}</if>
+            <if test="price != null "> and price = #{price}</if>
+            <if test="distributionChannel != null  and distributionChannel != ''"> and distribution_channel = #{distributionChannel}</if>
+            <if test="paymentMethod != null  and paymentMethod != ''"> and payment_method = #{paymentMethod}</if>
+            <if test="status != null "> and status = #{status}</if>
+            <if test="deliverStatus != null "> and deliver_status = #{deliverStatus}</if>
+            <if test="completeTime != null "> and complete_time = #{completeTime}</if>
+            <if test="refundTime != null "> and refund_time = #{refundTime}</if>
+            <if test="payTime != null "> and pay_time = #{payTime}</if>
+            <if test="deviceId != null  and deviceId != ''"> and device_id = #{deviceId}</if>
+            <if test="ip != null  and ip != ''"> and ip = #{ip}</if>
+            <if test="country != null  and country != ''"> and country = #{country}</if>
+            <if test="originInfo != null  and originInfo != ''"> and origin_info = #{originInfo}</if>
+            <if test="supportRefund != null "> and support_refund = #{supportRefund}</if>
+            <if test="refundReason != null  and refundReason != ''"> and refund_reason = #{refundReason}</if>
+            <if test="goodsInfo != null  and goodsInfo != ''"> and goods_info = #{goodsInfo}</if>
+            <if test="packageName != null  and packageName != ''"> and package_name like concat('%', #{packageName}, '%')</if>
+        </where>
+    </select>
+    
+    <select id="selectVipOrderById" parameterType="Long" resultMap="VipOrderResult">
+        <include refid="selectVipOrderVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertVipOrder" parameterType="VipOrder" useGeneratedKeys="true" keyProperty="id">
+        insert into vip_order
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="orderSn != null and orderSn != ''">order_sn,</if>
+            <if test="thirdOrderSn != null">third_order_sn,</if>
+            <if test="originOrderSn != null">origin_order_sn,</if>
+            <if test="type != null">type,</if>
+            <if test="userId != null">user_id,</if>
+            <if test="goodsId != null">goods_id,</if>
+            <if test="price != null">price,</if>
+            <if test="distributionChannel != null">distribution_channel,</if>
+            <if test="paymentMethod != null">payment_method,</if>
+            <if test="status != null">status,</if>
+            <if test="deliverStatus != null">deliver_status,</if>
+            <if test="completeTime != null">complete_time,</if>
+            <if test="refundTime != null">refund_time,</if>
+            <if test="payTime != null">pay_time,</if>
+            <if test="deviceId != null">device_id,</if>
+            <if test="ip != null">ip,</if>
+            <if test="country != null">country,</if>
+            <if test="originInfo != null">origin_info,</if>
+            <if test="remark != null">remark,</if>
+            <if test="supportRefund != null">support_refund,</if>
+            <if test="refundReason != null">refund_reason,</if>
+            <if test="goodsInfo != null">goods_info,</if>
+            <if test="packageName != null">package_name,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="updateTime != null">update_time,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="orderSn != null and orderSn != ''">#{orderSn},</if>
+            <if test="thirdOrderSn != null">#{thirdOrderSn},</if>
+            <if test="originOrderSn != null">#{originOrderSn},</if>
+            <if test="type != null">#{type},</if>
+            <if test="userId != null">#{userId},</if>
+            <if test="goodsId != null">#{goodsId},</if>
+            <if test="price != null">#{price},</if>
+            <if test="distributionChannel != null">#{distributionChannel},</if>
+            <if test="paymentMethod != null">#{paymentMethod},</if>
+            <if test="status != null">#{status},</if>
+            <if test="deliverStatus != null">#{deliverStatus},</if>
+            <if test="completeTime != null">#{completeTime},</if>
+            <if test="refundTime != null">#{refundTime},</if>
+            <if test="payTime != null">#{payTime},</if>
+            <if test="deviceId != null">#{deviceId},</if>
+            <if test="ip != null">#{ip},</if>
+            <if test="country != null">#{country},</if>
+            <if test="originInfo != null">#{originInfo},</if>
+            <if test="remark != null">#{remark},</if>
+            <if test="supportRefund != null">#{supportRefund},</if>
+            <if test="refundReason != null">#{refundReason},</if>
+            <if test="goodsInfo != null">#{goodsInfo},</if>
+            <if test="packageName != null">#{packageName},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+         </trim>
+    </insert>
+
+    <update id="updateVipOrder" parameterType="VipOrder">
+        update vip_order
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="orderSn != null and orderSn != ''">order_sn = #{orderSn},</if>
+            <if test="thirdOrderSn != null">third_order_sn = #{thirdOrderSn},</if>
+            <if test="originOrderSn != null">origin_order_sn = #{originOrderSn},</if>
+            <if test="type != null">type = #{type},</if>
+            <if test="userId != null">user_id = #{userId},</if>
+            <if test="goodsId != null">goods_id = #{goodsId},</if>
+            <if test="price != null">price = #{price},</if>
+            <if test="distributionChannel != null">distribution_channel = #{distributionChannel},</if>
+            <if test="paymentMethod != null">payment_method = #{paymentMethod},</if>
+            <if test="status != null">status = #{status},</if>
+            <if test="deliverStatus != null">deliver_status = #{deliverStatus},</if>
+            <if test="completeTime != null">complete_time = #{completeTime},</if>
+            <if test="refundTime != null">refund_time = #{refundTime},</if>
+            <if test="payTime != null">pay_time = #{payTime},</if>
+            <if test="deviceId != null">device_id = #{deviceId},</if>
+            <if test="ip != null">ip = #{ip},</if>
+            <if test="country != null">country = #{country},</if>
+            <if test="originInfo != null">origin_info = #{originInfo},</if>
+            <if test="remark != null">remark = #{remark},</if>
+            <if test="supportRefund != null">support_refund = #{supportRefund},</if>
+            <if test="refundReason != null">refund_reason = #{refundReason},</if>
+            <if test="goodsInfo != null">goods_info = #{goodsInfo},</if>
+            <if test="packageName != null">package_name = #{packageName},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteVipOrderById" parameterType="Long">
+        delete from vip_order where id = #{id}
+    </delete>
+
+    <delete id="deleteVipOrderByIds" parameterType="String">
+        delete from vip_order where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+</mapper>

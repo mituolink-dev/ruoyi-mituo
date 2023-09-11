@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.system.mapper.VipSubscriptionMapper">
+    
+    <resultMap type="VipSubscription" id="VipSubscriptionResult">
+        <result property="id"    column="id"    />
+        <result property="orderId"    column="order_id"    />
+        <result property="autoRenewing"    column="auto_renewing"    />
+        <result property="cancelReason"    column="cancel_reason"    />
+        <result property="status"    column="status"    />
+        <result property="startTime"    column="start_time"    />
+        <result property="expireTime"    column="expire_time"    />
+        <result property="autoResumeTime"    column="auto_resume_time"    />
+        <result property="price"    column="price"    />
+        <result property="paymentState"    column="payment_state"    />
+        <result property="userCancellationTime"    column="user_cancellation_time"    />
+        <result property="subscriptionId"    column="subscription_id"    />
+        <result property="packageName"    column="package_name"    />
+        <result property="subscriptionToken"    column="subscription_token"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="updateTime"    column="update_time"    />
+    </resultMap>
+
+    <sql id="selectVipSubscriptionVo">
+        select id, order_id, auto_renewing, cancel_reason, status, start_time, expire_time, auto_resume_time, price, payment_state, user_cancellation_time, subscription_id, package_name, subscription_token, create_time, update_time from vip_subscription
+    </sql>
+
+    <select id="selectVipSubscriptionList" parameterType="VipSubscription" resultMap="VipSubscriptionResult">
+        <include refid="selectVipSubscriptionVo"/>
+        <where>  
+            <if test="orderId != null  and orderId != ''"> and order_id = #{orderId}</if>
+            <if test="autoRenewing != null "> and auto_renewing = #{autoRenewing}</if>
+            <if test="cancelReason != null "> and cancel_reason = #{cancelReason}</if>
+            <if test="status != null "> and status = #{status}</if>
+            <if test="startTime != null "> and start_time = #{startTime}</if>
+            <if test="expireTime != null "> and expire_time = #{expireTime}</if>
+            <if test="autoResumeTime != null "> and auto_resume_time = #{autoResumeTime}</if>
+            <if test="price != null "> and price = #{price}</if>
+            <if test="paymentState != null "> and payment_state = #{paymentState}</if>
+            <if test="userCancellationTime != null "> and user_cancellation_time = #{userCancellationTime}</if>
+            <if test="subscriptionId != null  and subscriptionId != ''"> and subscription_id = #{subscriptionId}</if>
+            <if test="packageName != null  and packageName != ''"> and package_name like concat('%', #{packageName}, '%')</if>
+            <if test="subscriptionToken != null  and subscriptionToken != ''"> and subscription_token = #{subscriptionToken}</if>
+        </where>
+    </select>
+    
+    <select id="selectVipSubscriptionById" parameterType="Long" resultMap="VipSubscriptionResult">
+        <include refid="selectVipSubscriptionVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertVipSubscription" parameterType="VipSubscription" useGeneratedKeys="true" keyProperty="id">
+        insert into vip_subscription
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="orderId != null and orderId != ''">order_id,</if>
+            <if test="autoRenewing != null">auto_renewing,</if>
+            <if test="cancelReason != null">cancel_reason,</if>
+            <if test="status != null">status,</if>
+            <if test="startTime != null">start_time,</if>
+            <if test="expireTime != null">expire_time,</if>
+            <if test="autoResumeTime != null">auto_resume_time,</if>
+            <if test="price != null">price,</if>
+            <if test="paymentState != null">payment_state,</if>
+            <if test="userCancellationTime != null">user_cancellation_time,</if>
+            <if test="subscriptionId != null">subscription_id,</if>
+            <if test="packageName != null">package_name,</if>
+            <if test="subscriptionToken != null">subscription_token,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="updateTime != null">update_time,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="orderId != null and orderId != ''">#{orderId},</if>
+            <if test="autoRenewing != null">#{autoRenewing},</if>
+            <if test="cancelReason != null">#{cancelReason},</if>
+            <if test="status != null">#{status},</if>
+            <if test="startTime != null">#{startTime},</if>
+            <if test="expireTime != null">#{expireTime},</if>
+            <if test="autoResumeTime != null">#{autoResumeTime},</if>
+            <if test="price != null">#{price},</if>
+            <if test="paymentState != null">#{paymentState},</if>
+            <if test="userCancellationTime != null">#{userCancellationTime},</if>
+            <if test="subscriptionId != null">#{subscriptionId},</if>
+            <if test="packageName != null">#{packageName},</if>
+            <if test="subscriptionToken != null">#{subscriptionToken},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+         </trim>
+    </insert>
+
+    <update id="updateVipSubscription" parameterType="VipSubscription">
+        update vip_subscription
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="orderId != null and orderId != ''">order_id = #{orderId},</if>
+            <if test="autoRenewing != null">auto_renewing = #{autoRenewing},</if>
+            <if test="cancelReason != null">cancel_reason = #{cancelReason},</if>
+            <if test="status != null">status = #{status},</if>
+            <if test="startTime != null">start_time = #{startTime},</if>
+            <if test="expireTime != null">expire_time = #{expireTime},</if>
+            <if test="autoResumeTime != null">auto_resume_time = #{autoResumeTime},</if>
+            <if test="price != null">price = #{price},</if>
+            <if test="paymentState != null">payment_state = #{paymentState},</if>
+            <if test="userCancellationTime != null">user_cancellation_time = #{userCancellationTime},</if>
+            <if test="subscriptionId != null">subscription_id = #{subscriptionId},</if>
+            <if test="packageName != null">package_name = #{packageName},</if>
+            <if test="subscriptionToken != null">subscription_token = #{subscriptionToken},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteVipSubscriptionById" parameterType="Long">
+        delete from vip_subscription where id = #{id}
+    </delete>
+
+    <delete id="deleteVipSubscriptionByIds" parameterType="String">
+        delete from vip_subscription where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+</mapper>
